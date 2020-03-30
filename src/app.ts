@@ -1,145 +1,20 @@
-type Admin = {
-  name: string;
-  privilages: string[];
-};
+// const names: Array<string | number> = ['Max', 'Manu']; // string[]
+// name[0].split(' ');
 
-type Employee = {
-  name: string;
-  startDate: Date;
-};
+// const promise: Promise<number> = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve(10);
+//   }, 1500);
+// });
 
-// interface ElevatedEmployee extends Employee, Admin {}
+// promise.then(data => {
+//   // data.split(' ');
+// });
 
-type ElevatedEmployee = Admin & Employee;
-
-const e1: ElevatedEmployee = {
-  name: 'Max',
-  privilages: ['create-server'],
-  startDate: new Date()
-};
-
-type Combinable = string | number;
-type Numeric = number | boolean;
-
-type Universal = Combinable & Numeric;
-
-function add(a: number, b: number): number;
-function add(a: string, b: string): string;
-function add(a: string, b: number): string;
-function add(a: number, b: string): string;
-function add(a: Combinable, b: Combinable) {
-  if (typeof a === 'string' || typeof b === 'string') {
-    return a.toString() + b.toString();
-  }
-  return a + b;
+function merge<T, U>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
 }
 
-const result = add('Nikhil', ' Shrestha');
-result.split(' ');
-
-const fetchedUserData = {
-  id: 'u1',
-  name: 'Nikhil',
-  job: { title: 'CEO', description: 'My own company' }
-};
-
-console.log(fetchedUserData?.job?.title);
-
-const userInput = undefined;
-
-const storedData = userInput ?? 'DEFAULT';
-
-console.log(storedData);
-
-type UnknownEmployee = Employee | Admin;
-
-function printEmployeeInfo(emp: UnknownEmployee) {
-  console.log('Name: ' + emp.name);
-  if ('privilages' in emp) {
-    console.log('Privilages: ' + emp.privilages);
-  }
-  if ('startDate' in emp) {
-    console.log('Start Date: ' + emp.startDate);
-  }
-}
-
-printEmployeeInfo({ name: 'Manu', startDate: new Date() });
-
-class Car {
-  drive() {
-    console.log('Driving...');
-  }
-}
-
-class Truck {
-  drive() {
-    console.log('Driving a truck...');
-  }
-
-  loadCargo(amount: number) {
-    console.log('loading cargo ...' + amount);
-  }
-}
-
-type Vehicle = Car | Truck;
-
-const v1 = new Car();
-const v2 = new Truck();
-
-function useVehicle(vehicle: Vehicle) {
-  vehicle.drive();
-  if (vehicle instanceof Truck) {
-    vehicle.loadCargo(1000);
-  }
-}
-
-useVehicle(v1);
-useVehicle(v2);
-
-interface Bird {
-  type: 'bird';
-  flyingSpeed: number;
-}
-
-interface Horse {
-  type: 'horse';
-  runningSpeed: number;
-}
-
-type Animal = Bird | Horse;
-
-function moveAnimal(animal: Animal) {
-  let speed;
-  switch (animal.type) {
-    case 'bird':
-      speed = animal.flyingSpeed;
-      break;
-
-    case 'horse':
-      speed = animal.runningSpeed;
-      break;
-
-    default:
-      break;
-  }
-  console.log('Moving with speed: ', speed);
-}
-
-moveAnimal({ type: 'bird', flyingSpeed: 35 });
-
-// const userInputElemet = <HTMLInputElement>document.getElementById('user-input')!;
-const userInputElemet = <HTMLInputElement>document.getElementById('user-input');
-
-// alternative of using exclamation mark
-if (userInputElemet) {
-  (userInputElemet as HTMLInputElement).value = 'Hi there!';
-}
-
-interface ErrorContainer {
-  // { email: 'Not a valid email', username: 'Must start with a character!' }
-  [prop: string]: string;
-}
-
-const errorBag: ErrorContainer = {
-  email: 'Not a valid email!'
-};
+const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
+const mergedObj2 = merge({ name: 'Max' }, { age: 30 });
+console.log(mergedObj.age);
