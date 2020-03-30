@@ -105,3 +105,11 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: 'bird', flyingSpeed: 35 });
+
+// const userInputElemet = <HTMLInputElement>document.getElementById('user-input')!;
+const userInputElemet = <HTMLInputElement>document.getElementById('user-input');
+
+// alternative of using exclamation mark
+if (userInputElemet) {
+  (userInputElemet as HTMLInputElement).value = 'Hi there!';
+}
