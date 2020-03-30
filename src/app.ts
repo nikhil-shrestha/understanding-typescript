@@ -34,8 +34,22 @@ function add(a: Combinable, b: Combinable) {
   return a + b;
 }
 
-const result = add('Max', ' Schwarz');
+const result = add('Nikhil', ' Shrestha');
 result.split(' ');
+
+const fetchedUserData = {
+  id: 'u1',
+  name: 'Nikhil',
+  job: { title: 'CEO', description: 'My own company' }
+};
+
+console.log(fetchedUserData?.job?.title);
+
+const userInput = undefined;
+
+const storedData = userInput ?? 'DEFAULT';
+
+console.log(storedData);
 
 type UnknownEmployee = Employee | Admin;
 
