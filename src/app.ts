@@ -76,3 +76,26 @@ const numberStorage = new DataStorage<number>();
 // objectStorage.addItem({ name: 'Manu' });
 // objectStorage.removeItem(maxObj);
 // console.log(objectStorage.getItems());
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourse(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+
+  return courseGoal as CourseGoal;
+}
+
+const names: Readonly<string[]> = ['Max', 'Manu'];
+// names.push('Anna');
+// names.pop();
