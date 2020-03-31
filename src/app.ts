@@ -101,3 +101,34 @@ class Product {
 
 const p1 = new Product('Book', 19);
 const p2 = new Product('Book 2', 29);
+
+function autobind(
+  _target: any,
+  _methodName: string,
+  descriptor: TypedPropertyDescriptor<any>
+) {
+  const originalMethod = descriptor.value;
+  const adjDescriptor: TypedPropertyDescriptor<any> = {
+    configurable: true,
+    enumerable: true,
+    get() {
+      const boundFn = originalMethod.bind(this);
+      return boundFn;
+    }
+  };
+  return adjDescriptor;
+}
+
+class Printer {
+  message = 'This works';
+
+  @autobind
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+const p = new Printer();
+
+const button = document.querySelector('button')!;
+button.addEventListener('click', p.showMessage);
