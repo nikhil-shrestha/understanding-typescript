@@ -5,15 +5,23 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server"
+    "start": "webpack-dev-server"
   },
   "keywords": [
     "typescript",
     "course"
   ],
-  "author": "Maximilian Schwarzmüller",
+  "author": "Nikhil Shrestha",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.5.4"
+    "@types/lodash": "^4.14.149"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
